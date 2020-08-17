@@ -1,3 +1,4 @@
+// TODO: Add images for player, box and target
 console.log("Game started");
 
 startGame();
