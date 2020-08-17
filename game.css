@@ -1,0 +1,25 @@
+table {
+    border: solid black thin;
+    width: 400px;
+    height: 400px;
+}
+
+td {
+    border: solid grey thin;
+}
+
+p {
+    font-weight: bolder;
+}
+
+#player {
+    color: orange;
+}
+
+#box {
+    color: saddlebrown;
+}
+
+#target {
+    color: lawngreen
+}
