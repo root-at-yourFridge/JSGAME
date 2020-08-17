@@ -3,6 +3,7 @@ console.log("Game started");
 startGame();
 
 function startGame() {
+
     playerRow = Math.floor(Math.random() * 9);
     playerColumn = Math.floor(Math.random() * 9);
 
@@ -27,27 +28,27 @@ function movePlayer(newPlayerRow, newPlayerColumn) {
 }
 
 function moveBox(posY, posX) {
+    if (boxRow - 1 < 0 || boxRow + 1 > 9 || boxColumn - 1 < 0 || boxColumn + 1 > 9) {
+        gameLost();
+        return;
+    }
     if (posY == boxRow - 1) {
         //down
-        if (boxRow - 1 < 0) { gameLost(); return; }
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'white';
         boxRow += 1;
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'saddlebrown';
     } else if (posY == boxRow + 1) {
         //up
-        if (boxRow + 1 > 9) { gameLost(); return; }
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'white';
         boxRow -= 1;
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'saddlebrown';
     } else if (posX == boxColumn + 1) {
         //left
-        if (boxColumn + 1 > 9) { gameLost(); return; }
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'white';
         boxColumn -= 1;
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'saddlebrown';
     } else if (posX == boxColumn - 1) {
         //right
-        if (boxColumn - 1 < 0) { gameLost(); return; }
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'white';
         boxColumn += 1;
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'saddlebrown';
@@ -88,6 +89,7 @@ function gameLost() {
     document.querySelector(`#r${playerRow} > td.c${playerColumn}`).style.backgroundColor = 'white';
     document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'white';
     document.querySelector(`#r${targetRow} > td.c${targetColumn}`).style.backgroundColor = 'white';
+
     if (window.confirm("You Lost! Want to try again?")) {
         startGame();
     } else {
@@ -100,6 +102,7 @@ function checkForWin() {
         document.querySelector(`#r${playerRow} > td.c${playerColumn}`).style.backgroundColor = 'white';
         document.querySelector(`#r${boxRow} > td.c${boxColumn}`).style.backgroundColor = 'white';
         document.querySelector(`#r${targetRow} > td.c${targetColumn}`).style.backgroundColor = 'white';
+
         if (window.confirm("You Won! Start again?")) {
             startGame();
         } else {
